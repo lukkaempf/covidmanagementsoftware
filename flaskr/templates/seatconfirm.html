@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head%}
+<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+{% endblock %}
+
+{% block body%}
+<div class="centerall">
+    <h1>Erfolgreich Sitzplatz registriert</h1>
+    <p class="fett">Vorname: </p>
+    <p>{{seatconfirm.vorname}}</p>
+    <p class="fett">Nachname: </p>
+    <p>{{seatconfirm.name}}</p>
+    <p class="fett">Mail: </p>
+    <p>{{seatconfirm.email}}</p>
+    <p class="fett">Klasse: </p>
+    <p>{{seatconfirm.klasse}}</p>
+    </br>
+    <p>Diese Anwendung kann nun geschlossen werden</p>
+</div>
+
+{% endblock %}

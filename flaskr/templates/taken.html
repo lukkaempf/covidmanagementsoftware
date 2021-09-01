@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block head%}
+<title>Seat</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+<link rel="stylesheet"href="{{ url_for('static', filename='seat.css') }}">
+{% endblock %}
+
+{% block body%}
+<div class="centerall">
+    <h1>Sitzbelegung von Raum: {{room.roomname}}</h1>
+    <table>
+        <tr>
+            <td>Sitznummer</td>
+            <td>Status</td>
+            <td>History</td>
+        </tr>
+        {% for seat in seatinfos %}
+        <tr>
+            <td>
+                <a>{{seat.seatnr}}</a>
+            </td>
+            <td>
+                {% if seat.registers[0].dateregisterd > currenttime12h %}
+                <a>Sitz ist frei</a>
+                {% else %}
+                <a>Sitz ist besetzt</a>
+                {% endif %}
+            </td>
+            <td>
+                <button class="btn btn-primary" onclick="window.location.href='/admin/{{room.id}}/taken/history/{{seat.seatnr}}'"></button></button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

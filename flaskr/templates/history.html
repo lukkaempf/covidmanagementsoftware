@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head%}
+<title>Home</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+{% endblock %}
+
+{% block body%}
+<div class="centerall">
+    <table>
+        <tr>
+            <td>Registiertdatum</td>
+            <td>Name</td>
+            <td>Vorname</td>
+            <td>Klasse</td>
+            <td>Email</td>
+        </tr>
+
+        {% for register in registers %}
+        {% for r in register.registers %}
+        <tr>
+            <td>{{r.dateregisterd}}</td>
+            <td>{{r.name}}</td>
+            <td>{{r.vorname}}</td>
+            <td>{{r.klasse}}</td>
+            <td>{{r.email}}</td>
+        </tr>
+        {% endfor %}
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

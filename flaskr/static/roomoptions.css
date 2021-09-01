@@ -1,0 +1,206 @@
+#table1 {
+    border: none;
+}
+
+#td1 {
+    border: none;
+}
+
+#btn1 {
+    width: 70%;
+    height: 30px;
+}
+
+.sector1 {
+    background-color: #e9e9e9;
+    height: 200px;
+    border-radius:20px; 
+    -webkit-box-shadow: 0px 34px 20px -11px rgba(0,0,0,.3);
+    box-shadow: 0px 34px 20px -11px rgba(0,0,0,.3);
+    margin: 20px 0 20px 0;
+    padding: 20px;
+    
+    display: grid; 
+    grid-template-columns: auto 150px 150px; 
+    grid-template-rows: auto; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        ". . ."; 
+    justify-content: stretch; 
+    justify-items: stretch; 
+    align-items: stretch; 
+}
+.sector1button {
+    margin: 20px;
+}
+
+.buttoningrid:hover {
+    box-shadow:
+    0 0 10px #fff,            /* outer white */
+    0px 0 10px #f0f,        /* outer left magenta */
+    0px 0 10px #0ff;         /* outer right cyan */
+}
+
+.grid1 {
+    display: grid; 
+    grid-template-columns: auto auto auto; 
+    grid-template-rows: 500px; 
+    gap: 0px 30px; 
+    justify-content: center; 
+    grid-template-areas: 
+      ". . .";   
+    
+}
+
+.sector2 {
+    height: 350px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.buttoningrid {
+    background-color: #d0cece;
+    height: 90px;
+    margin-top: auto;
+    margin-bottom: 30px;
+    border-radius:20px; 
+    -webkit-box-shadow: 0px 34px 20px -11px rgba(0,0,0,.3);
+    box-shadow: 0px 34px 20px -11px rgba(0,0,0,.3);    
+}
+
+.icon {
+    font-size:50px;
+    height: 100%;
+    width:100%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px; 
+     
+}
+
+.textingrid {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 120%;
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+
+#qrcode {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    height: 160px;
+    width: 150px;
+}
+  
+#qrcode:hover {opacity: 0.7;}
+  
+/* The Modal (background) */
+.qrcode_modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+padding-top: 100px; /* Location of the box */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgb(0,0,0); /* Fallback color */
+background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.qrcode_modal_image {
+margin: auto;
+display: block;
+width: 50%;
+max-width: 500px;
+}
+
+/* Add Animation */
+.qrcode_modal_image{  
+-webkit-animation-name: zoom;
+-webkit-animation-duration: 0.6s;
+animation-name: zoom;
+animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+from {-webkit-transform:scale(0)} 
+to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+from {transform:scale(0)} 
+to {transform:scale(1)}
+}
+
+/* The Close Button */
+.qrcode_modal_close {
+position: absolute;
+top: 35px;
+right: 30%;
+color: #f1f1f1;
+font-size: 40px;
+font-weight: bold;
+transition: 0.3s;
+}
+
+.qrcode_modal_close:hover,
+.qrcode_modal_close:focus {
+color: #bbb;
+text-decoration: none;
+cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .qrcode_modal_image {
+        width: 100%;
+    }
+}
+
+@media print {
+    body {
+        visibility: hidden;
+    }
+    #qrcode {
+        visibility: visible;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: auto;
+    }
+}
+
+.button {
+    background-color: #d0cece;
+    height: 50px;
+    width: 100px;
+    margin-top: auto;
+    border-radius:20px; 
+    -webkit-box-shadow: 0px 34px 20px -11px rgba(0,0,0,.3);
+    box-shadow: 0px 34px 20px -11px rgba(0,0,0,.3);   
+    border: none; 
+}
+
+.button:hover {
+    box-shadow:
+    0 0 10px #fff,            /* outer white */
+    0px 0 10px #f0f,        /* outer left magenta */
+    0px 0 10px #0ff;         /* outer right cyan */
+}

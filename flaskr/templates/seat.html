@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block head%}
+<title>Seat</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='seat.css') }}">
+{% endblock %}
+
+{% block body%}
+<div class="centerall">
+    <h1>Eintragen</h1>
+    <form method="POST">
+        <div >
+            <div class="form-group">
+                <label for="vorname">Vorname</label>
+                <input
+            name="vorname"
+            placeholder="Vorname"
+                />
+            </div>
+            </br>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input
+            name="name"
+            placeholder="Name"
+                />
+            </div>
+            </br>
+            <div class="form-group">
+                <label for="klasse">Klasse</label>
+                <input name="klasse" placeholder="Klasse">
+            </div>
+            </br>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input
+            name="email"
+            placeholder="Email Adresse"
+                />
+            </div>
+            </br>
+            {% if acceptrequret == False %}
+            <div class="form-check">
+                <input name="check" type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Akzeptieren, Daten werden für 10Tage sicher gespeichert</label>
+            </div>
+            {% else %}
+            <div class="form-check">
+                <input name="check" type="checkbox" class="form-check-input" id="exampleCheck1" id="exampleCheck2">
+                <label class="form-check-label" for="exampleCheck1">Akzeptieren, Daten werden für 10Tage sicher gespeichert</label>
+            </div>
+            <p>accept requret</p>
+            {% endif %}
+            </br>
+            <div>
+                <button type="submit" class="btn btn-primary">Eintragen</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Anmelden</h1>
+<form method="POST">
+    <div>
+        <div>
+            <label for="username">Benutername</label>
+            <input
+          name="username"
+          placeholder="Benutername"
+            />
+        </div>
+        </br>
+        <div>
+            <label for="password">Passwort</label>
+            <input
+            type="password"
+            name="password"
+            placeholder="Passwort"
+            />
+        </div>
+        </br>
+        <div>
+            <button type="submit">Anmelden</button>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,47 @@
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: whitesmoke;
+}
+
+table, td, th {
+    border: 1px solid #aaa;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+
+
+#tda1 {
+    width: 100%;
+    display: block;
+} 
+
+.content {
+    margin: 0 auto;
+    width: 400px;
+}
+
+
+.fett {
+    font-weight: bolder;
+    font-size: large;
+}
+
+.centerall {
+    margin: auto;
+    width: 60%;
+}
+

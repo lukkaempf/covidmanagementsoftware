@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1>Registieren</h1>
+<form method="POST">
+    <div>
+        <div>
+            <label for="username">Benutername</label>
+            <input
+          name="username"
+          placeholder="Benutername"
+            />
+        </div>
+        </br>
+        <div>
+            <label for="firstname">Vorname</label>
+            <input
+          name="firstname"
+          placeholder="Vorname"
+            />
+        </div>
+        </br>
+        <div>
+            <label for="email">Email</label>
+            <input
+          name="email"
+          placeholder="Email"
+            />
+        </div>
+        </br>
+        <div>
+            <label for="name">Name</label>
+            <input
+          name="name"
+          placeholder="Name"
+            />
+        </div>
+        </br>
+        <div>
+            <label for="password">Passwort</label>
+            <input
+            type="password"
+            name="password"
+            placeholder="Passwort"
+            />
+        </div>
+        </br>
+        <div>
+            <button type="submit">Anmelden</button>
+    </div>
+</form>
+{% endblock %}
