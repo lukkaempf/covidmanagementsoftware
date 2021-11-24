@@ -7,7 +7,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:toor@localhost/cms'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Windows2000@localhost/cms'
     app.config['SECRET_KEY'] = 'donthack'
     from .views import views
 
