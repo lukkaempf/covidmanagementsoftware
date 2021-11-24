@@ -2,45 +2,9 @@
 
 {% block head%}
 <title>Home</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 {% endblock %}
 
 {% block body%}
-<div class='centerall'>
-    <h2>Sitzplatz wählen und sich registrieren</h2>
-    </br>
-    
-    </br>   
-    <table>
-        <tr class='fett'>
-            <td>Sitzplatznummer</td>
-            <td>Status</td>
-            <td>Eintragen</td>
-        </tr>
-        {% for x, y in aa.items()%}
-        <tr>
-            
-            
-            <td>{{x}}</td>
-            {% if y == True %} 
-                <td><p>Sitzplatz besetzt</p></td>
-                <td><a href="/seat/{{x}}" class="disabled">Eintragen</a></td>    
-            {% else %}
-                <td><p>Sitzplatz frei</p></td>
-                <td><a href="/seat/{{x}}">Eintragen</a></td>   
-            {% endif %}
-            
-            
-        </tr>       
-            {% endfor %}
-           
-        
-        
-    </table>
-    <!--
-        <button >Sitze anlegen</button>
-    -->
-    
-</div>
+<h1>test</h1>
 {% endblock %}

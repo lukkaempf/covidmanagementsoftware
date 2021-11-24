@@ -31,10 +31,13 @@ def test(seatid):
     else:
         blockedseat2 = False
 
-
-
-@views.route('/', methods=['POST','GET'])
+@views.route('/')
 def home():
+    return render_template('home.html')
+
+
+@views.route('/oldhome', methods=['POST','GET'])
+def oldhome():
     seats = Seats.query.order_by(Seats.seatid).all()
     print(seats)
     aa = {}
@@ -47,7 +50,7 @@ def home():
         
         print(blockedseat2)
     print(aa)
-    return render_template('home.html', seats=seats,blockedseat=blockedseat2, aa=aa)
+    return render_template('oldhome.html', seats=seats,blockedseat=blockedseat2, aa=aa)
 
 @views.route('/seat/<int:seatid>', methods=['GET', 'POST'])
 def seat(seatid):
