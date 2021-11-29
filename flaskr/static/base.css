@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     font-family: sans-serif;
-    background-color: whitesmoke;
+    background-color: black;
 }
 
 table, td, th {
@@ -21,9 +21,23 @@ td {
     text-align: center;
     padding: 5px;
 }
+.white {
+    color: white;
+}
+.red {
+    color: red !important;
+}
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+.navbar-inverse {
+    background-color: black;
+    color: red;
 
+}
 .navbar-brand {
     margin: 0px 60px;
+
 
 }
 

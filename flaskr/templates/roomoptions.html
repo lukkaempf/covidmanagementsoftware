@@ -1,8 +1,9 @@
-{% extends "base.html" %}
+{% extends "base_admin.html" %}
 
 {% block head %}
 <title>Sitzeverwalten</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='roomoptions.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -38,23 +39,18 @@
         <div class="sector1 sector2">
             <h3>Sitzbelegung</h3>
             <p class="textingrid">Schaue die momentane Sitzbelegung an. Und der Verlauf jeder Reservierung pro Sitz.</p>
-            <div class=buttoningrid>
-                <a href="/admin/{{room.id}}/taken/" class='fas fa-users icon'> </a>
-            </div>
+            <a class="buttoningrid" href="/admin/{{room.id}}/taken/"></a>
+
         </div>
         <div class="sector1 sector2">
             <h3>Sitz reservieren</h3>
             <p class="textingrid">Reservie einen Sitz. Weiter zum Formular.</p>
-            <div class=buttoningrid>
-                <a href="/admin/{{room.id}}/register/" class='fas fa-users icon'> </a>
-            </div>
+            <a class="buttoningrid" href="/admin/{{room.id}}/register/"></a>
         </div>
         <div class="sector1 sector2">
             <h3>Daten exportieren</h3>
             <p class="textingrid">Exportiere die Daten, des jetzigen Raumes.</p>
-            <div class=buttoningrid>
-                <a href="google.ch/" class='fas fa-users icon'> </a>
-            </div>
+            <a class="buttoningrid" href="google.ch/"></a>
         </div>
     </div>
     <p><img /></p>

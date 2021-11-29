@@ -176,7 +176,25 @@ def signup():
 @login_required
 def admin():
     user  = current_user
-    return render_template('admin.html', user=user)
+    return render_template('/admin.html', user=user)
+
+@views.route('/users/', methods=['GET','POST'])
+@login_required
+def users():
+    user  = current_user
+    return render_template('/admin_users.html', user=user)
+
+@views.route('/rooms/', methods=['GET','POST'])
+@login_required
+def rooms():
+    user  = current_user
+    return render_template('/admin_rooms.html', user=user)
+
+@views.route('/films/', methods=['GET','POST'])
+@login_required
+def films():
+    user  = current_user
+    return render_template('/admin_films.html', user=user)
 
 @views.route('/admin/updateroomname', methods=['GET','POST'])
 def updateroomname():

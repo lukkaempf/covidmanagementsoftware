@@ -14,13 +14,13 @@
     {% block head%}{% endblock %}
 </head>
 
-<nav class="navbar navbar-inverse">
+<nav class="navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/">Menu</a>
-        <a class="navbar-brand" href="/">Benutzer</a>
-        <a class="navbar-brand" href="/">Säle</a>
-        <a class="navbar-brand" href="/">Filme</a>
+        <a class="menu navbar-brand" href="/admin">Menu</a>
+        <a class="users navbar-brand" href="/users">Benutzer</a>
+        <a class="rooms navbar-brand" href="/rooms">Säle</a>
+        <a class="films navbar-brand" href="/films">Filme</a>
       </div>
       <!--
       <ul class="nav navbar-nav">
@@ -35,7 +35,7 @@
         <li><a href="#">{{ current_user }}</a></li>
       </ul>
       -->
-      <a class="navbar-right nav navbar-brand" href="/login">Login</a>
+      <a class="navbar-right nav navbar-brand" href="/logout">Logout</a>
       <!--<ul class="nav navbar-nav navbar-right">
         {% if not current_user %}
         <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

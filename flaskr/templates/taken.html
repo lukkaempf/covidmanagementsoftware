@@ -1,9 +1,14 @@
-{% extends "base.html" %}
+{% extends "base_admin.html" %}
 
 {% block head%}
 <title>Seat</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
 <link rel="stylesheet"href="{{ url_for('static', filename='seat.css') }}">
+<style>
+    .rooms{
+        color: red !important;
+    }
+</style>
 {% endblock %}
 
 {% block body%}
