@@ -21,6 +21,11 @@ td {
     text-align: center;
     padding: 5px;
 }
+input {
+    background-color: black;
+    border-style: solid;
+    border-color: white;
+}
 .white {
     color: white;
 }
@@ -62,4 +67,27 @@ td {
     margin: auto;
     width: 60%;
 }
+.title {
+    color: white;
+}
+.grid-container {
+    display: grid;
+}
+.box {
+    border-color: white;
+    border-style: solid;
+    padding: 20px;
+    margin: 20px;
+}
+.description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 120%;
+    text-align: center;
+    color: white;
+    margin-right: auto;
+}
 
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: white;
+}
