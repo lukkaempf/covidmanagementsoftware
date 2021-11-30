@@ -44,14 +44,16 @@
 .grid1 {
     display: grid; 
     grid-template-columns: auto auto auto; 
-    grid-template-rows: 500px; 
+    grid-template-rows: 380px; 
     gap: 0px 30px; 
     justify-content: center; 
     grid-template-areas: 
       ". . .";   
     
 }
-
+.trash {
+    margin-left: 70%;
+}
 .sector2 {
     height: 350px;
     width: auto;

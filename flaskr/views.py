@@ -242,7 +242,7 @@ def roomoptions(roomid):
         image = base64.b64encode(qrcode.qrcode).decode("utf-8")
     else:
         return "API need Network"
-    return render_template('roomoptions.html', room=room, image=image)
+    return render_template('admin_roomoptions.html', room=room, image=image)
 
 @views.route('/admin/<int:roomid>/register/', methods=['GET','POST'])
 def register(roomid):

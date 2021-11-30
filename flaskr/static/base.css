@@ -64,20 +64,31 @@ input {
 }
 
 .centerall {
-    margin: auto;
-    width: 60%;
+    margin-left: 16.6%;
+    margin-right: 16.6%;
+
 }
 .title {
     color: white;
 }
 .grid-container {
     display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 10%;
+}
+
+/*admin_films*/
+.margin-left {
+    margin-left: 10%;
 }
 .box {
     border-color: white;
     border-style: solid;
     padding: 20px;
-    margin: 20px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 18px;
 }
 .description {
     font-family: 'Open Sans', sans-serif;
@@ -90,4 +101,28 @@ input {
 a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: white;
+}
+
+/*admin_rooms + admin_roomoptions*/
+
+.room {
+    padding: 20px;
+    border-color: white;
+    border-style: solid;
+}
+.plus {
+    width: 5%;
+    margin-left: 48%;
+    margin-top: 50px;
+}
+.btn svg{
+    color: red;
+    font-size: xx-large;
+}
+.btn {
+    background-color: black;
+    border: none;
+}
+.btn:hover {
+    background-color: rgba(187, 64, 64, 0.699);
 }

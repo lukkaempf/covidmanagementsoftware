@@ -10,35 +10,37 @@
 {% endblock %}
 
 {% block body%}
-<h1 class="title"><b>Film Hinzufügen</b></h1>
-<div class="grid-container">
-    <form method="POST">
+<div class="margin-left">
+    <h1 class="title"><b>Film Hinzufügen</b></h1>
+    <div class="grid-container">
+        <form method="POST">
 
-        <div class="box">
-            <div>
-                <label class="description" for="filmname">Film Name</label>
-                <input
-                name="filmname"
-                placeholder=""
-                />
+            <div class="box">
+                <div>
+                    <label class="description" for="filmname">Film Name</label>
+                    <input
+                    name="filmname"
+                    placeholder=""
+                    />
+                </div>
+                </br>
+                <div>
+                    <label class="description" for="duration">Dauer</label>
+                    <input
+                    name="duration"
+                    placeholder=""
+                    />
+                </div>
+                </br>
+                <div>
+                    <button>Bild Hochladen</button>
+                </div>
             </div>
-            </br>
             <div>
-                <label class="description" for="duration">Dauer</label>
-                <input
-                name="duration"
-                placeholder=""
-                />
+                <button type="submit">Hinzufügen</button>
             </div>
-            </br>
-            <div>
-                <button>Bild Hochladen</button>
-            </div>
-        </div>
-        <div>
-            <button type="submit">Hinzufügen</button>
-        </div>
 
-    </form>
+        </form>
+    </div>
 </div>
 {% endblock %}

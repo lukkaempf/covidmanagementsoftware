@@ -59,6 +59,34 @@
         </div>
     </div>
     <p><img /></p>
-
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-roomid="{{room.id}}" data-oldname="{{room.roomname}}"><i style='font-size:15px' class='fas'>&#9998; Raum umbenennen</i></button>
+    <a onclick="deleteRoom('{{ room.id }}')" class="trash btn btn-primary">
+        <span  style='font-size:15px'class="glyphicon glyphicon-trash"></span> Raum löschen 
+      </a>
+    <i class="bi bi-trash" class="btn btn-primary" onclick="deleteRoom('{{ room.id }}')" aria-hidden="true" style='font-size:15px' class='fas'></i>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Raumnamen ändern</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" id=formUpdateRoomName>
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Neuer Raumname:</label>
+                            <input type="text" class="form-control" id="recipient-name" name="newname">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" href="/admin">Abbrechen</button>
+                            <button type="button" class="btn btn-primary" id="b1">Ändern</button>
+                        </div>
+                    </form>
+                </div>
+            </div> 
+        </div>
+    </div>
 </div>
 {% endblock %}
