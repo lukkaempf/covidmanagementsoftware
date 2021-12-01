@@ -164,7 +164,7 @@ $(document).on('shown.bs.modal','#updateusermodal', function () {
 
 function newUser() {
   console.log('test')
- /*  const username = document.getElementById('username').value
+ const username = document.getElementById('username').value
   const firstname = document.getElementById('firstname').value
   const name = document.getElementById('name').value
   const password = document.getElementById('password').value
@@ -176,5 +176,5 @@ function newUser() {
       body: JSON.stringify({username: username,firstname:firstname,name:name,password:password,isadmin:isadmin})
   }).then((_res) =>{
       window.location.href = "/admin/user/"
-  }) */
+  })
 }
