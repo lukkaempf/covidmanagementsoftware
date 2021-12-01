@@ -10,7 +10,7 @@
 {% endblock %}
 {% block body%}
 <div class="centerall">
-    <p>Alle Räume</p>
+    <h1>Alle Räume</h1>
     <div class="grid-container">
         {% for room in user.rooms %}
         <a class="grid-item room" href="/admin/{{room.id}}/options">{{ room.roomname }}</a>

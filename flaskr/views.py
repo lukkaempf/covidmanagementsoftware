@@ -288,4 +288,34 @@ def history(roomid,seatnr):
     
 
 
+@views.route('/admin/user/', methods=['GET','POST','DELETE','UPDATE'])
+def user():
+    allUsers = db.session.query(Users).all()
+
+    if request.method=='POST':
+        usertocreate = json.loads(request.data)
+        print(usertocreate)
+        if usertocreate['username']:
+            newuser = Users(username=usertocreate['username'], firstname=usertocreate['firstname'], name=usertocreate['name'],password=usertocreate['password'],isadmin=usertocreate['isadmin'])
+            db.session.add(newuser)
+            db.session.commit()
+            return render_template('admin_users.html') 
+    if request.method=='DELETE':
+        usertodelete = json.loads(request.data)
+        useridtodelete = json.loads(request.data)
+        usertodelete = Users.query.get(useridtodelete['userid'])
+        if usertodelete:
+            db.session.delete(usertodelete)
+            db.session.commit()
+    if request.method=='UPDATE':
+        usertoupdate = json.loads(request.data)
+        print(usertoupdate)
+        dbusertoupdate = Users.query.get(usertoupdate['userid'])
+        dbusertoupdate.username = usertoupdate['updateusername']
+        dbusertoupdate.firstname = usertoupdate['updatefirstname']
+        dbusertoupdate.name = usertoupdate['updatename']
+        dbusertoupdate.password = usertoupdate['updatepassword']
+        dbusertoupdate.isadmin = usertoupdate['updateisadmin']
+        db.session.commit()
+    return render_template('admin_users.html', allUsers=allUsers)  
    

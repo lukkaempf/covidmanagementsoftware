@@ -7,6 +7,8 @@ function deleteNote(noteId) {
     });
   }
 
+
+
 function deleteRoom(roomid) {
     fetch('/admin/deleteroom', {
         method: "POST",
@@ -119,3 +121,60 @@ function function_print() {
 buttons.addEventListener("click", function_print);
 
 
+function deleteUser(userid) {
+  fetch('/admin/user/', {
+      method: "DELETE",
+      body: JSON.stringify({ userid: userid})
+  }).then((_res)=> {
+      window.location.href = "/admin/user/"
+  });
+}
+
+function updateUser(userid) {
+  const updateusername = document.getElementById('updateusername').value
+  const updatefirstname = document.getElementById('updatefirstname').value
+  const updatename = document.getElementById('updatename').value
+  const updatepassword = document.getElementById('updatepassword').value
+  const updateisadmin = document.getElementById('updateisadmin').checked
+  console.log(userid,updateusername,updatefirstname,updatename,updatepassword,updateisadmin)
+
+  fetch("/admin/user/", {
+    method: "UPDATE",
+    body: JSON.stringify({ userid:userid, updateusername:updateusername,updatefirstname:updatefirstname,updatename:updatename,updatepassword:updatepassword,updateisadmin:updateisadmin}),
+  }).then((_res) => {
+    window.location.href = "/admin/user/";
+  });
+}
+
+
+$(document).on('shown.bs.modal','#updateusermodal', function () {
+  console.log('modalaufgerufen')
+ /*  var button = $(event.relatedTarget)
+  console.log(button)
+  var userid = button.data('userid')
+  console.log(userid)
+  $(this).find('#updateuserbutton').attr('onclick', `updateUser(${userid})`)
+   $(this).find('#recipient-name').val(oldname) 
+  $(this).find('#updateuserbutton').select()
+  // var input = document.getElementById('recipient-name');
+  input.focus()
+  input.select() */
+})
+
+
+function newUser() {
+  console.log('test')
+ /*  const username = document.getElementById('username').value
+  const firstname = document.getElementById('firstname').value
+  const name = document.getElementById('name').value
+  const password = document.getElementById('password').value
+  const isadmin = document.getElementById('isadmin').checked
+  console.log(username,firstname,name,password,isadmin)
+
+  fetch("/admin/user/", {
+      method: "POST",
+      body: JSON.stringify({username: username,firstname:firstname,name:name,password:password,isadmin:isadmin})
+  }).then((_res) =>{
+      window.location.href = "/admin/user/"
+  }) */
+}

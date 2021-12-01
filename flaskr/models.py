@@ -31,6 +31,7 @@ class Users(db.Model, UserMixin):
     password = db.Column(db.String(200))
     authenticated = db.Column(db.Boolean, default=False)
     isactive = db.Column(db.Boolean, default=True)
+    isadmin = db.Column(db.String(10), default=False)
     rooms = db.relationship("Rooms", backref='roomowner')
     
 
