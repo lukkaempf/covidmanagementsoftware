@@ -7,10 +7,29 @@
 {% endblock %}
 
 {% block body%}
-<style>body{
-background-image: url('/flaskr/assets/Background.jpeg');}</style>
-<h1>test</h1>
-<h2>test</h2>
-<img id="backgroud-picture" src='/flaskr/assets/Background.jpeg'><img>
+<style>
+.startpage{
+    background-image: url("{{ url_for('static', filename='Background.jpeg') }}");
+    min-height: 1080px;
+}
+</style>
+<div class="startpage">
+
+</div>
+<div class="grid-container films">
+    <a>test</a>
+    {% for film in user.film %}
+    <div class="movie">
+        <img class="mov_pic" src="{{ film.image }}">
+        <a class="description">{{ film.name }}</a>
+        <a class="description">{{ film.room }}</a>
+        <a href="/admin/{{ film.room }}/register/"></a>
+        <a>test</a>
+    </div>
+
+    {% endfor %}
+
+</div>
+
 
 {% endblock %}

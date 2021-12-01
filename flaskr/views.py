@@ -33,7 +33,8 @@ def test(seatid):
 
 @views.route('/')
 def home():
-    return render_template('home.html')
+    user  = current_user
+    return render_template('home.html', user=user)
 
 
 @views.route('/oldhome', methods=['POST','GET'])
@@ -97,17 +98,6 @@ def create_seats():
             db.session.commit()
             print('Success')
     return 'test'
-
-
-
-
-
-
-
-
-
-
-
 
 @views.route('/login/', methods=['GET','POST'])
 def login():
