@@ -186,6 +186,11 @@ def films():
     user  = current_user
     return render_template('/admin_films.html', user=user)
 
+@views.route('/danke/', methods=['GET','POST'])
+def danke():
+    user  = current_user
+    return render_template('/danke.html', user=user)
+
 @views.route('/admin/updateroomname', methods=['GET','POST'])
 def updateroomname():
     room = json.loads(request.data)

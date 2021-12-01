@@ -56,7 +56,7 @@ function newroom() {
         method: "POST",
         body: JSON.stringify({newname: newname})
     }).then((_res) =>{
-        window.location.href = "/admin"
+        window.location.href = "/rooms"
     })
 }
 
@@ -83,7 +83,7 @@ function registerseat(roomid) {
          method: "POST",
          body: formData
      }).then((_res) =>{
-      window.location.href = `/admin/${roomid}/taken`
+      window.location.href = `/danke`
   })
 }
 

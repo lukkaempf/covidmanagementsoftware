@@ -7,10 +7,6 @@
 
 } */
 
-body{
-    background-image: url("{{ url_for('static', filename='Background.jpeg') }}");
-    min-height: 1080px;
-}
 .navbar {
     margin-bottom: 0;
 }

@@ -1,4 +1,4 @@
-{% extends "base_admin.html" %}
+{% extends "base.html" %}
 {% block head%}
 <title>Home</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
@@ -11,4 +11,5 @@
 
 {% block body%}
 <h1>Hallo {{ user.firstname }} {{ user.name }}</h1>
+<h2>Danke für deine Registration!</h2>
 {% endblock %}
