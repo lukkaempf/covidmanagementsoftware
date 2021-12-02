@@ -168,12 +168,6 @@ def admin():
     user  = current_user
     return render_template('/admin.html', user=user)
 
-@views.route('/users/', methods=['GET','POST'])
-@login_required
-def users():
-    user  = current_user
-    return render_template('/admin_users.html', user=user)
-
 @views.route('/rooms/', methods=['GET','POST'])
 @login_required
 def rooms():

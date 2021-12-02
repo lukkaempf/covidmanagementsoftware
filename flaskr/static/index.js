@@ -18,6 +18,27 @@ function deleteRoom(roomid) {
     });
 }
 
+$('#updateusermodal').on('show.bs.modal', function (event) {
+  console.log('modalaufgerufen')
+  var button = $(event.relatedTarget)
+  console.log(button)
+  var userid = button.data('userid')
+  var username = button.data('username')
+  var firstname = button.data('firstname')
+  var name = button.data('name')
+  var password = button.data('password')
+  var isadmin = button.data('isadmin')
+  
+  $(this).find('#updateuserbutton').attr('onclick', `updateUser(${userid})`)
+  $(this).find('#updateusername').val(username)
+  $(this).find('#updatefirstname').val(firstname) 
+  $(this).find('#updatename').val(name)
+  $(this).find('#updatepassword').val(password) 
+  console.log($(this).find('#updateisadmin').val)
+  $(this).find('#updateisadmin').val(isadmin)
+  document.getElementById('updateisadmin').checked = isadmin;
+})
+
 
 $('#exampleModal').on('show.bs.modal', function (event) {
     console.log('modalaufgerufen')
@@ -147,19 +168,7 @@ function updateUser(userid) {
 }
 
 
-$(document).on('shown.bs.modal','#updateusermodal', function () {
-  console.log('modalaufgerufen')
- /*  var button = $(event.relatedTarget)
-  console.log(button)
-  var userid = button.data('userid')
-  console.log(userid)
-  $(this).find('#updateuserbutton').attr('onclick', `updateUser(${userid})`)
-   $(this).find('#recipient-name').val(oldname) 
-  $(this).find('#updateuserbutton').select()
-  // var input = document.getElementById('recipient-name');
-  input.focus()
-  input.select() */
-})
+
 
 
 function newUser() {
