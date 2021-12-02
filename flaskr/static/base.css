@@ -130,3 +130,8 @@ a, a:hover, a:focus, a:active {
 .btn:hover {
     background-color: rgba(187, 64, 64, 0.699);
 }
+
+.isa_error {
+    color: #D8000C;
+    background-color: #FFD2D2;
+}

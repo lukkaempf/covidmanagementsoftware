@@ -39,6 +39,22 @@ $('#updateusermodal').on('show.bs.modal', function (event) {
   document.getElementById('updateisadmin').checked = isadmin;
 })
 
+$('#newFilmModal').on('show.bs.modal', function (event) {
+  console.log('modalaufgerufen')
+  var button = $(event.relatedTarget)
+  console.log(button)
+  var error = button.data('error')
+  /*
+  console.log(error)
+  $(this).find('#bb1').attr('onclick', `newFilm()`)
+  
+  $(this).find('#recipient-name').val(oldname)
+  $(this).find('#b1').select()
+  var input = document.getElementById('recipient-name');
+  input.focus()
+  input.select() */
+})
+
 
 $('#exampleModal').on('show.bs.modal', function (event) {
     console.log('modalaufgerufen')
@@ -167,10 +183,6 @@ function updateUser(userid) {
   });
 }
 
-
-
-
-
 function newUser() {
   console.log('test')
  const username = document.getElementById('username').value
@@ -187,3 +199,17 @@ function newUser() {
       window.location.href = "/admin/user/"
   })
 }
+
+function newFilm(){
+  const name = document.getElementById('name').value
+  const description = document.getElementById('description').value
+  const roomname = document.getElementById('roomname').value
+
+  fetch('/admin/film/',{
+    method: 'POST',
+    body: JSON.stringify({name:name, description:description, roomname:roomname})
+  }).then((_res)=>{
+    window.location.href = "/admin/film/"
+  })
+}
+

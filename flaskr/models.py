@@ -82,5 +82,15 @@ class Qrcodes(db.Model):
     room_id = db.Column(db.Integer, db.ForeignKey('rooms.id')) 
     
 
+vorstellung = db.Table('vorstellung',
+    db.Column('room_id', db.Integer, db.ForeignKey('rooms.id')),
+    db.Column('film_id', db.Integer, db.ForeignKey('film.id'))
+)
+
+
+class Film(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    description = db.Column(db.String(200))
 
 

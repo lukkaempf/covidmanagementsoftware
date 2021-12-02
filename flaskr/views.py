@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, redirect, url_for, jsonify
-from .models import Seats, Users, Rooms, Registers, Qrcodes
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify, flash
+from .models import Seats, Users, Rooms, Registers, Qrcodes, Film, vorstellung
 from . import db
 from datetime import datetime, timedelta
 import pytz
@@ -174,12 +174,6 @@ def rooms():
     user  = current_user
     return render_template('/admin_rooms.html', user=user)
 
-@views.route('/films/', methods=['GET','POST'])
-@login_required
-def films():
-    user  = current_user
-    return render_template('/admin_films.html', user=user)
-
 @views.route('/danke/', methods=['GET','POST'])
 def danke():
     user  = current_user
@@ -308,3 +302,32 @@ def user():
         db.session.commit()
     return render_template('admin_users.html', allUsers=allUsers)  
    
+
+@views.route('/admin/film/', methods=['GET','POST'])
+@login_required
+def films():
+    error = ''
+    user  = current_user
+    allfilms = db.session.query(Film).all()
+    if request.method == 'POST':
+        filmtoadd = json.loads(request.data)
+        room = db.session.query(Rooms).filter_by(roomname=filmtoadd['roomname']).first()
+        if room:
+            print(room.id)
+        else:
+            error = 'Saalname wurde nicht gefunden'
+
+            
+            
+    """ if filmtoadd:
+            newfilm = Film(name=filmtoadd['name'], description=filmtoadd['description'])
+            db.session.add(newfilm)
+            db.session.commit() """
+    
+    print(error)
+    return render_template('/admin_films.html', user=user, allfilms=allfilms)
+
+
+@views.route('/test/')
+def test():
+    return render_template('/test.html')
