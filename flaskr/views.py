@@ -8,6 +8,7 @@ import json
 import requests
 from werkzeug.utils import secure_filename
 import base64
+from sqlalchemy import insert
 
 views= Blueprint('views', __name__)
 i = ''
@@ -303,29 +304,39 @@ def user():
     return render_template('admin_users.html', allUsers=allUsers)  
    
 
-@views.route('/admin/film/', methods=['GET','POST'])
+@views.route('/admin/film/', methods=['GET','POST','DELETE'])
 @login_required
 def films():
-    error = ''
     user  = current_user
-    allfilms = db.session.query(Film).all()
+    allFilms = db.session.query(Film).all()
+    for film in allFilms:
+        room=db.session.query(Rooms).join(vorstellung).filter_by(film_id=film.id).first()   
+        film.roomname=room.roomname
+        film.roomid=room.id
     if request.method == 'POST':
         filmtoadd = json.loads(request.data)
         room = db.session.query(Rooms).filter_by(roomname=filmtoadd['roomname']).first()
         if room:
-            print(room.id)
+            newFilm = Film(name=filmtoadd['name'], description=filmtoadd['description'])
+            db.session.add(newFilm)
+            db.session.commit()
+            #INSERT INTO LINKTABLE
+            print(newFilm.id, room.id)
+            newFilm_Room = vorstellung.insert().values(room_id=room.id,film_id=newFilm.id)
+            db.session.execute(newFilm_Room)
+            db.session.commit()
+            print('success')
         else:
-            error = 'Saalname wurde nicht gefunden'
+            print('Saalname wurde nicht gefunden')
+    if request.method=='DELETE':
+        filmidtodelete = json.loads(request.data)
+        filmtodelete = Film.query.get(filmidtodelete['filmid'])
+        print(filmidtodelete['filmid'])
+        db.session.query(vorstellung).filter_by(film_id=filmidtodelete['filmid']).delete()
+        db.session.delete(filmtodelete)
+        db.session.commit()
 
-            
-            
-    """ if filmtoadd:
-            newfilm = Film(name=filmtoadd['name'], description=filmtoadd['description'])
-            db.session.add(newfilm)
-            db.session.commit() """
-    
-    print(error)
-    return render_template('/admin_films.html', user=user, allfilms=allfilms)
+    return render_template('/admin_films.html', user=user, allFilms=allFilms)
 
 
 @views.route('/test/')

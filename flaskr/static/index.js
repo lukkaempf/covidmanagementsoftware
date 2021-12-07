@@ -43,11 +43,10 @@ $('#newFilmModal').on('show.bs.modal', function (event) {
   console.log('modalaufgerufen')
   var button = $(event.relatedTarget)
   console.log(button)
-  var error = button.data('error')
+  /* var error = button.data('error')
+  console.log(error) */
+  $(this).find('#newFilmButton').attr('onclick', `newFilm()`)
   /*
-  console.log(error)
-  $(this).find('#bb1').attr('onclick', `newFilm()`)
-  
   $(this).find('#recipient-name').val(oldname)
   $(this).find('#b1').select()
   var input = document.getElementById('recipient-name');
@@ -200,6 +199,8 @@ function newUser() {
   })
 }
 
+  
+
 function newFilm(){
   const name = document.getElementById('name').value
   const description = document.getElementById('description').value
@@ -213,3 +214,12 @@ function newFilm(){
   })
 }
 
+
+function deleteFilm(filmid,roomid) {
+  fetch('/admin/film/', {
+      method: "DELETE",
+      body: JSON.stringify({filmid: filmid, roomid:roomid})
+  }).then((_res)=> {
+      window.location.href = "/admin/film/"
+  });
+}
