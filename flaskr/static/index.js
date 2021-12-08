@@ -43,15 +43,8 @@ $('#newFilmModal').on('show.bs.modal', function (event) {
   console.log('modalaufgerufen')
   var button = $(event.relatedTarget)
   console.log(button)
-  /* var error = button.data('error')
-  console.log(error) */
+  
   $(this).find('#newFilmButton').attr('onclick', `newFilm()`)
-  /*
-  $(this).find('#recipient-name').val(oldname)
-  $(this).find('#b1').select()
-  var input = document.getElementById('recipient-name');
-  input.focus()
-  input.select() */
 })
 
 
@@ -84,6 +77,21 @@ function updateRoomname(roomid) {
   }
 
 
+function updatefilmmodal(filmid) {
+
+  const name = document.getElementById('name').value
+  const description = document.getElementById('description').value
+  const roomname = document.getElementById('roomname').value
+
+    fetch("/admin/film/", {
+    method: "UPDATE",
+    body: JSON.stringify({ filmid: filmid, name: name,description:description,roomname:roomname}),
+  }).then((_res) => {
+    window.location.href = "/admin/film/";
+  });
+} 
+
+
 function newroom() {
     const newname = document.getElementById('newroomname').value
     console.log(newname)
@@ -107,6 +115,8 @@ function registerseat(roomid) {
     formData.append('email', register.email.value)
     formData.append('sitzplatznumber', register.sitzplatznumber.value)
 
+    console.log(formData)
+
     /* for (let value of formData.values()) {
         console.log(name,value); 
      }
@@ -115,7 +125,7 @@ function registerseat(roomid) {
         console.log ("entries " + value[0] + " mit " + value[1]);
      } */
 
-     fetch(`/admin/${roomid}/register`,{
+     fetch(`/admin/${roomid}/register/`,{
          method: "POST",
          body: formData
      }).then((_res) =>{
@@ -221,5 +231,19 @@ function deleteFilm(filmid,roomid) {
       body: JSON.stringify({filmid: filmid, roomid:roomid})
   }).then((_res)=> {
       window.location.href = "/admin/film/"
+  });
+}
+
+function updateFilm(filmid) {
+  const name = document.getElementById('name').value
+  const description = document.getElementById('description').value
+  const roomname = document.getElementById('roomname').value
+  console.log(userid,updateusername,updatefirstname,updatename,updatepassword,updateisadmin)
+
+  fetch("/admin/user/", {
+    method: "UPDATE",
+    body: JSON.stringify({ filmid:filmid, name:name,description:description,roomname:roomname}),
+  }).then((_res) => {
+    window.location.href = "/admin/film/";
   });
 }

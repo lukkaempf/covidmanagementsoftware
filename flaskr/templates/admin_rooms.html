@@ -12,7 +12,7 @@
 <div class="centerall">
     <h1>Alle Räume</h1>
     <div class="grid-container">
-        {% for room in user.rooms %}
+        {% for room in rooms %}
         <a class="grid-item room" href="/admin/{{room.id}}/options">{{ room.roomname }}</a>
         {% endfor %}
         

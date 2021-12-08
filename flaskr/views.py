@@ -179,7 +179,8 @@ def admin():
 @login_required
 def rooms():
     user  = current_user
-    return render_template('/admin_rooms.html', user=user)
+    rooms = db.session.query(Rooms).all()
+    return render_template('/admin_rooms.html', user=user, rooms=rooms)
 
 @views.route('/danke/', methods=['GET','POST'])
 def danke():
@@ -240,6 +241,7 @@ def register(roomid):
     data = request.form
     if data:
         seatexists = db.session.query(Seats).filter(Seats.seatnr == data['sitzplatznumber'], Seats.room_id == roomid).first()
+        print('daf')
         if not seatexists:
             print('exisitert nicht')
             newseat = Seats(seatnr=data['sitzplatznumber'],room_id=roomid)
@@ -279,6 +281,7 @@ def history(roomid,seatnr):
 
 
 @views.route('/admin/user/', methods=['GET','POST','DELETE','UPDATE'])
+@login_required
 def user():
     allUsers = db.session.query(Users).all()
 
@@ -310,7 +313,7 @@ def user():
     return render_template('admin_users.html', allUsers=allUsers)  
    
 
-@views.route('/admin/film/', methods=['GET','POST','DELETE'])
+@views.route('/admin/film/', methods=['GET','POST','DELETE','UPDATE'])
 @login_required
 def films():
     user  = current_user
@@ -334,6 +337,9 @@ def films():
             print('success')
         else:
             print('Saalname wurde nicht gefunden')
+    if request.method=='UPDATE':
+        usertoupdate = json.loads(request.data)
+        print(usertoupdate)
     if request.method=='DELETE':
         filmidtodelete = json.loads(request.data)
         filmtodelete = Film.query.get(filmidtodelete['filmid'])
