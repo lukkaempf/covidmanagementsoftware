@@ -18,20 +18,20 @@
             <h1>Alle Filme</h1>
             <table>
                 <tr>
-                    <td>Benutzername</td>
-                    <td>Name</td>
-                    <td>Vorname</td>
-                    <td>Benutzer ändern</td>
-                    <td>Benutzer löschen</td>
+                    <td>Filmname</td>
+                    <td>Beschreibung</td>
+                    <td>Saal</td>
+                    <td>Film ändern</td>
+                    <td>Film löschen</td>
                 </tr>
-                {% for user in allUsers %}
+                {% for film in allFilms %}
                 <tr>
                     <td id="td1">
-                        <a id="tda1" >{{ user.username }}</a></td>  
+                        <a id="tda1" >{{film.name}}</a></td>  
                     <td id="td1">
-                        <a id="tda1" >{{ user.name }}</a></td>  
+                        <a id="tda1" >{{film.description}}</a></td>  
                     <td id="td1">
-                        <a id="tda1" >{{ user.firstname }}</a></td>
+                        <a id="tda1" >{{film.roomname}}</a></td>
                     <td id=td1>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#updateusermodal" data-userid="{{user.id}}" data-username="{{user.username}}" data-firstname="{{user.firstname}}" data-name="{{user.name}}" data-password="{{user.password}}" data-isadmin="{{user.isadmin}}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-pencil" viewBox="0 0 16 16">
@@ -40,7 +40,7 @@
                             </button>
                     </td>
                     <td>      
-                        <a onclick="deleteUser('{{ user.id }}')" class="btn btn-primary" >
+                        <a onclick="deleteFilm('{{film.id}}','{{film.roomid}}')" class="btn btn-primary" >
                             <span  style='font-size:15px'class="glyphicon glyphicon-trash"></span>  
                           </a>
                         </div>
@@ -67,14 +67,6 @@
                                     <div class="modal-body" id=flashes>
                                         <form method="POST" id=formUpdateRoomName>
                                             <div class="form-group">
-                                                <div class="isa_error">
-                                                    <i class="fa fa-times-circle"></i>
-                                                    {% for mesg in get_flashed_messages() %}
-                                                    <h3>: {{ mesg }} </h3>
-                                                    {% endfor %}
-                                                    asdf
-                                                 </div>
-                                                 <h6 id="error_code" data-error="test">df</h6>
                                                 <label for="name" class="col-form-label">Filmname:</label>
                                                 <input type="text" class="form-control" name="name" id="name">
                                                 <label for="description" class="col-form-label">Filmbeschreibung:</label>
@@ -84,7 +76,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" href="/admin/film/">Abbrechen</button>
-                                                <button type="button" class="btn btn-primary" id="bb1">Ändern</button>
+                                                <button type="button" class="btn btn-primary" id="newFilmButton">Ändern</button>
                                             </div>
                                         </form>
                                     </div>
@@ -94,49 +86,6 @@
                     </td>
                 </tr>
             </table>
-
-
-
-
-<div class="margin-left">
-    <h1 class="title"><b>Film Hinzufügen</b></h1>
-    <div class="grid-container">
-        <form method="POST">
-
-            <div class="box">
-                <div>
-                    <label class="description" for="filmname">Film Name</label>
-                    <input
-                    name="filmname"
-                    placeholder=""
-                    />
-                </div>
-                </br>
-                <div>
-                    <label class="description" for="duration">Dauer</label>
-                    <input
-                    name="duration"
-                    placeholder=""
-                    />
-                </div>
-                </br>
-                <div>
-                    <label class="description" for="duration">Saal</label>
-                    <input
-                    name="room"
-                    placeholder=""
-                    />
-                </div>
-                </br>
-                <div>
-                    <button>Bild Hochladen</button>
-                </div>
-            </div>
-            <div>
-                <button type="submit">Hinzufügen</button>
-            </div>
-
-        </form>
-    </div>
-</div>
 {% endblock %}
+
+

@@ -18,12 +18,13 @@
 </div>
 <div class="grid-container films">
     <a>test</a>
-    {% for film in user.film %}
+    {% for film in allFilms %}
+    {{film.roomid}}
     <div class="movie">
-        <img class="mov_pic" src="{{ film.image }}">
+        <img class="mov_pic" src="{{ film.name }}">
         <a class="description">{{ film.name }}</a>
-        <a class="description">{{ film.room }}</a>
-        <a href="/admin/{{ film.room }}/register/">Sitzplatzreservieren</a>
+        <a class="description">{{ film.roomname }}</a>
+        <a href="/admin/{{ film.roomid }}/register/">Sitzplatzreservieren</a>
         <a>test</a>
     </div>
 
