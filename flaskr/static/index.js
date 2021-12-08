@@ -63,6 +63,21 @@ $('#exampleModal').on('show.bs.modal', function (event) {
     input.select()
 })
 
+$('#updatefilmmodal').on('show.bs.modal', function (event) {
+  console.log('modalaufgerufen')
+  var button = $(event.relatedTarget)
+  console.log(button)
+  var filmid = button.data('filmid')
+  var name = button.data('name')
+  var description = button.data('description')
+  var roomname = button.data('roomname')
+
+  $(this).find('#updatefilmbutton').attr('onclick', `updateFilm(${filmid})`)
+  $(this).find('#updatename').val(name)
+  $(this).find('#updatedescription').val(description) 
+  $(this).find('#updateroomname').val(roomname)
+})
+
 function updateRoomname(roomid) {
 
     const newname = document.getElementById('recipient-name').value
@@ -77,7 +92,7 @@ function updateRoomname(roomid) {
   }
 
 
-function updatefilmmodal(filmid) {
+/* function updatefilmmodal(filmid) {
 
   const name = document.getElementById('name').value
   const description = document.getElementById('description').value
@@ -90,7 +105,7 @@ function updatefilmmodal(filmid) {
     window.location.href = "/admin/film/";
   });
 } 
-
+ */
 
 function newroom() {
     const newname = document.getElementById('newroomname').value
@@ -235,12 +250,11 @@ function deleteFilm(filmid,roomid) {
 }
 
 function updateFilm(filmid) {
-  const name = document.getElementById('name').value
-  const description = document.getElementById('description').value
-  const roomname = document.getElementById('roomname').value
-  console.log(userid,updateusername,updatefirstname,updatename,updatepassword,updateisadmin)
+  const name = document.getElementById('updatename').value
+  const description = document.getElementById('updatedescription').value
+  const roomname = document.getElementById('updateroomname').value
 
-  fetch("/admin/user/", {
+  fetch("/admin/film/", {
     method: "UPDATE",
     body: JSON.stringify({ filmid:filmid, name:name,description:description,roomname:roomname}),
   }).then((_res) => {

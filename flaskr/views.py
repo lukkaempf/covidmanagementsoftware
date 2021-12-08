@@ -338,8 +338,12 @@ def films():
         else:
             print('Saalname wurde nicht gefunden')
     if request.method=='UPDATE':
-        usertoupdate = json.loads(request.data)
-        print(usertoupdate)
+        filmtoupdate = json.loads(request.data)
+        dbfilmtoupdate = Film.query.get(filmtoupdate['filmid'])
+        dbfilmtoupdate.name = filmtoupdate['name']
+        dbfilmtoupdate.description = filmtoupdate['description']
+        dbfilmtoupdate.roomname = filmtoupdate['roomname']
+        db.session.commit()
     if request.method=='DELETE':
         filmidtodelete = json.loads(request.data)
         filmtodelete = Film.query.get(filmidtodelete['filmid'])
