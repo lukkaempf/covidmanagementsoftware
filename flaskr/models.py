@@ -19,7 +19,7 @@ class Seats(db.Model):
     #date_created = db.Column(UTCDateTime(tz))
     date_created = db.Column(DateTime(timezone=True), default=time)
     room_id = db.Column(db.Integer, db.ForeignKey('rooms.id'))
-    registers = db.relationship('Registers', backref='registerperseat') 
+   
     
 
 class Users(db.Model, UserMixin):
@@ -55,8 +55,8 @@ class Users(db.Model, UserMixin):
 class Rooms(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     roomname = db.Column(db.String(50))
+    sumseats = db.Column(db.Integer)
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    seats = db.relationship('Seats', backref='seatsinroom')
     qrcodes = db.relationship ('Qrcodes', uselist=False)
 
 """ class Seats(db.Model):
@@ -69,10 +69,11 @@ class Registers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     vorname = db.Column(db.String(50))
-    klasse = db.Column(db.String(50))
     email = db.Column(db.String(50))
+    seatnr = db.Column(db.Integer)
+    roomid = db.Column(db.Integer)
     dateregisterd = db.Column(DateTime(timezone=True), default=time)
-    seats_id = db.Column(db.Integer, db.ForeignKey('seats.id'))
+    
 
 class Qrcodes(db.Model):
     id = db.Column(db.Integer, primary_key=True)

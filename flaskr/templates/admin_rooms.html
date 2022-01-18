@@ -29,8 +29,15 @@
                     <div class="modal-body">
                         <form method="POST">
                             <div class="form-group">
-                                <label for="newroomname" class="col-form-label">Neuer Raum:</label>
-                                <input type="text" class="form-control" name="newroomname" id="newroomname">
+                                <div>
+                                    <label for="newroomname" class="col-form-label">Neuer Raum:</label>
+                                    <input type="text" class="form-control" name="newroomname" id="newroomname">
+                                </div>
+                                <label class="col-form-label"> </label>
+                                <div>
+                                    <label for="sumseats" class="col-form-label">Anzahl Sitzplätze:  </label> 
+                                    <input type="number" min="1" max="100" value="1" name="sumseats" id="sumseats" />
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal" href="/admin/rooms">Abbrechen</button>
@@ -43,84 +50,105 @@
         </div>
     </div>
     <img class="plus" data-toggle="modal" data-target="#newroommodal" src="{{ url_for('static', filename='plus.png') }}">
-    <!--
-    <table>
-        {% for room in user.rooms %}
-        <tr>
-            <td id="td1">
-                <a id="tda1" href="/admin/{{room.id}}/options">{{ room.roomname }}</a></td>  
-            <td>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-roomid="{{room.id}}" data-oldname="{{room.roomname}}"><i style='font-size:15px' class='fas'>&#xf044;</i></button>
-            </td>
-            <td>
-                <a onclick="deleteRoom('{{ room.id }}')" class="btn btn-primary">
-                    <span  style='font-size:15px'class="glyphicon glyphicon-trash"></span>  
-                  </a>
-                <i class="bi bi-trash" class="btn btn-primary" onclick="deleteRoom('{{ room.id }}')" aria-hidden="true" style='font-size:15px' class='fas'></i>
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <td colspan="3">
-                <button class="btn btn-primary" class="bi bi-plus-square" data-toggle="modal" data-target="#newroommodal" ><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
-                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                </svg></button>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-                <div class="modal fade" id="newroommodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Neuen Raum erstellen</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form method="POST">
-                                    <div class="form-group">
-                                        <label for="newroomname" class="col-form-label">Neuer Raum:</label>
-                                        <input type="text" class="form-control" name="newroomname" id="newroomname">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" href="/admin">Abbrechen</button>
-                                        <button type="button" class="btn btn-primary" onClick="newroom()">Erstellen</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div> 
-                    </div>
-                </div>
-            </td>
-        </tr>
-    </table>
-    -->
+    <script>
+        (function($) {
+        $.fn.spinner = function() {
+        this.each(function() {
+        var el = $(this);
+        
+        // add elements
+        el.wrap('<span class="spinner"></span>');     
+        el.before('<span class="sub">-</span>');
+        el.after('<span class="add">+</span>');
+        
+        // substract
+        el.parent().on('click', '.sub', function () {
+        if (el.val() > parseInt(el.attr('min')))
+        el.val( function(i, oldval) { return --oldval; });
+        });
+        
+        // increment
+        el.parent().on('click', '.add', function () {
+        if (el.val() < parseInt(el.attr('max')))
+        el.val( function(i, oldval) { return ++oldval; });
+        });
+            });
+        };
+        })(jQuery);
+        
+        $('input[type=number]').spinner();
+        </script>
+
+    <style>
+        input[type=number] {
+  float: left;
+  width: 70px;
+  height: 35px;
+  padding: 0;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #25323B;
+  border: 2px #25323B solid;
+  background: none;
+  outline: none;
+  pointer-events: none;
+}
+
+span.spinner {
+  position: absolute;
+  height: 40px;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+span.spinner > .sub,
+span.spinner > .add {
+  float: left;
+  display: block;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  font-family: Lato;
+  font-weight: 700;
+  font-size: 1.2em;
+  line-height: 33px;
+  color: #25323B;
+  border: 2px #25323B solid;
+  border-right: 0;
+  border-radius: 2px 0 0 2px;
+  cursor: pointer;
+  transition: 0.1s linear;
+  -o-transition: 0.1s linear;
+  -ms-transition: 0.1s linear;
+  -moz-transition: 0.1s linear;
+  -webkit-transition: 0.1s linear;
+}
+
+span.spinner > .add {
+  top: 0;
+  border: 2px #25323B solid;
+  border-left: 0;
+  border-radius: 0 2px 2px 0;
+}
+
+span.spinner > .sub:hover,
+span.spinner > .add:hover {
+  background: #25323B;
+  color: #25323B;
+}
+ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+ -webkit-appearance: none;
+}
+    </style>
 
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Raumnamen ändern</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" id=formUpdateRoomName>
-                        <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Neuer Raumname:</label>
-                            <input type="text" class="form-control" id="recipient-name" name="newname">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" href="/admin/rooms">Abbrechen</button>
-                            <button type="button" class="btn btn-primary" id="b1">Ändern</button>
-                        </div>
-                    </form>
-                </div>
-            </div> 
-        </div>
-    </div>
 
 </div>
 {% endblock %}

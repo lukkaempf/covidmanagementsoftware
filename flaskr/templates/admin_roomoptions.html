@@ -19,7 +19,8 @@
     </br>
     <div class="sector1">
         <div>
-            Raum: {{ room.roomname }}
+            Raumname: {{ room.roomname }} <br>
+            Sitzplätze: {{ room.sumseats }}
         </div>
         <div>
             <button id="print" class="button sector1button"><i class="fas fa-print"></i></button>
@@ -44,18 +45,18 @@
         <div class="sector1 sector2">
             <h3>Sitzbelegung</h3>
             <p class="textingrid">Schaue die momentane Sitzbelegung an. Und der Verlauf jeder Reservierung pro Sitz.</p>
-            <a class="buttoningrid" href="/admin/{{room.id}}/taken/"></a>
+            <a class="buttoningrid" href="/admin/taken/{{room.id}}/"></a>
 
         </div>
         <div class="sector1 sector2">
             <h3>Sitz reservieren</h3>
             <p class="textingrid">Reservie einen Sitz. Weiter zum Formular.</p>
-            <a class="buttoningrid" href="/admin/{{room.id}}/register/"></a>
+            <a class="buttoningrid" href="/admin/register/{{room.id}}/"></a>
         </div>
         <div class="sector1 sector2">
             <h3>Daten exportieren</h3>
             <p class="textingrid">Exportiere die Daten, des jetzigen Raumes.</p>
-            <a class="buttoningrid" href="google.ch/"></a>
+            <a class="buttoningrid" href="nicht_konfigureirt"></a>
         </div>
     </div>
     <p><img /></p>

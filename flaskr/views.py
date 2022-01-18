@@ -213,7 +213,7 @@ def deleteroom():
 def newroom():
     roomtocreate = json.loads(request.data)
     if roomtocreate:
-        newroom = Rooms(roomname=roomtocreate['newname'], users_id=current_user.id)
+        newroom = Rooms(roomname=roomtocreate['newname'], sumseats=roomtocreate['sumseats'], users_id=current_user.id)
         db.session.add(newroom)
         db.session.commit()
         #URL TO REQUEST AND FILE COLUMNS WITH THE RIGHT STUFF
@@ -235,29 +235,20 @@ def roomoptions(roomid):
         return "API need Network"
     return render_template('admin_roomoptions.html', room=room, image=image)
 
-@views.route('/admin/<int:roomid>/register/', methods=['GET','POST'])
+@views.route('/admin/register/<int:roomid>/', methods=['GET','POST'])
 def register(roomid):
     room = Rooms.query.get(roomid)
     data = request.form
     if data:
-        seatexists = db.session.query(Seats).filter(Seats.seatnr == data['sitzplatznumber'], Seats.room_id == roomid).first()
-        print('daf')
-        if not seatexists:
-            print('exisitert nicht')
-            newseat = Seats(seatnr=data['sitzplatznumber'],room_id=roomid)
-            db.session.add(newseat)
-            db.session.commit()
-        seat =  db.session.query(Seats).filter(Seats.seatnr == data['sitzplatznumber'], Seats.room_id == roomid).first()
-        print(seat.id)
-        newregister = Registers(vorname=data['vorname'],name=data['name'],klasse=data['klasse'],email=data['email'],seats_id=seat.id)
+        newregister = Registers(vorname=data['vorname'],name=data['name'],seatnr=data['seatnr'],email=data['email'],roomid=roomid)
         db.session.add(newregister)
         db.session.commit()
     return render_template('register.html', room=room)
 
-@views.route('/admin/<int:roomid>/taken/')
+@views.route('/admin/taken/<int:roomid>/')
 def taken(roomid):
     room = Rooms.query.get(roomid)
-    seatinfos = db.session.query(Seats).filter(Seats.room_id==roomid).all()
+    registers = db.session.query(Registers).filter(roomid==roomid).all()
     currenttime12h = datetime.now() + timedelta(hours=-12)
     """ print(currenttime12h)
     for seat in seatinfos:
@@ -267,15 +258,12 @@ def taken(roomid):
             print('Sitz ist Frei')
         else:
             print('Sitz ist besetzt') """
-    return render_template('taken.html', room=room, seatinfos=seatinfos, currenttime12h=currenttime12h)
+    return render_template('taken.html', room=room, registers=registers, currenttime12h=currenttime12h)
 
-@views.route('/admin/<int:roomid>/taken/history/<int:seatnr>/')
+@views.route('/admin/taken/<int:roomid>/history/<int:seatnr>/')
 def history(roomid,seatnr):
     room = Rooms.query.get(roomid)
-    registers = db.session.query(Seats).filter(seatnr==Seats.seatnr,roomid==Seats.room_id).all()
-    for register in registers:
-        for r in register.registers:
-            print(r.name)
+    registers = db.session.query(Registers).filter(seatnr==Registers.seatnr,roomid==roomid).all()
     return render_template('history.html', registers=registers)
     
 

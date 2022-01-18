@@ -20,20 +20,20 @@
             <td>Status</td>
             <td>History</td>
         </tr>
-        {% for seat in seatinfos %}
+        {% for r in registers %}
         <tr>
             <td>
-                <a>{{seat.seatnr}}</a>
+                <a>{{r.seatnr}}</a>
             </td>
             <td>
-                {% if seat.registers[0].dateregisterd > currenttime12h %}
+               {% if r.dateregisterd > currenttime12h %}
                 <a>Sitz ist frei</a>
                 {% else %}
                 <a>Sitz ist besetzt</a>
                 {% endif %}
             </td>
             <td>
-                <button class="btn btn-primary" onclick="window.location.href='/admin/{{room.id}}/taken/history/{{seat.seatnr}}'"></button></button>
+                <button class="btn btn-primary" onclick="window.location.href='/admin/taken/{{room.id}}/history/{{r.seatnr}}'">History</button>
             </td>
         </tr>
         {% endfor %}

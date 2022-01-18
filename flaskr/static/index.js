@@ -109,11 +109,12 @@ function updateRoomname(roomid) {
 
 function newroom() {
     const newname = document.getElementById('newroomname').value
+    const sumseats = document.getElementById('sumseats').value
     console.log(newname)
 
     fetch("/admin/newroom", {
         method: "POST",
-        body: JSON.stringify({newname: newname})
+        body: JSON.stringify({newname: newname, sumseats:sumseats})
     }).then((_res) =>{
         window.location.href = "/rooms"
     })
@@ -122,13 +123,14 @@ function newroom() {
 function registerseat(roomid) {
     const register = document.getElementById('registerseatinput')
     
+    
+
     var formData = new FormData()
     formData.append('roomid', roomid)
     formData.append('vorname', register.vorname.value)
     formData.append('name', register.name.value)
-    formData.append('klasse', register.klasse.value)
     formData.append('email', register.email.value)
-    formData.append('sitzplatznumber', register.sitzplatznumber.value)
+    formData.append('seatnr', register.list.value)
 
     console.log(formData)
 
@@ -140,7 +142,7 @@ function registerseat(roomid) {
         console.log ("entries " + value[0] + " mit " + value[1]);
      } */
 
-     fetch(`/admin/${roomid}/register/`,{
+     fetch(`/admin/register/${roomid}/`,{
          method: "POST",
          body: formData
      }).then((_res) =>{
